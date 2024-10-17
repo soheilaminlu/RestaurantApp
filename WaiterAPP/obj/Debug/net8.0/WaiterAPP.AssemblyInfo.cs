@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WaiterAPP")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+338cf4372126d7bef26e25c90a73c924b2e52321")]
 [assembly: System.Reflection.AssemblyProductAttribute("WaiterAPP")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WaiterAPP")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -10,6 +10,8 @@ namespace WaiterAPP.Models
 
         public string? LastName { get; set; }
 
+
+
         public int Age { get; set; }    
 
         public ICollection<Order>? Orders { get; set; }
