@@ -1,15 +1,18 @@
 ﻿
+using WaiterAPP.Dto.OrderDto;
+using WaiterAPP.Models;
+
 namespace WaiterAPP.Interfaces
 {
     public interface IOrderService
     {
-        Task GetAllOrders();
+        Task<List<OrdersDto>> GetAllOrders();
 
-        Task<CreateOrderDto> CreateOrder()
+        Task<OrdersDto> CreateOrder(CreateOrderDto order);
 
-        Task<OrderDto> GetOrderById(int id);
+        Task<OrdersDto> GetOrderById(int id);
 
-        Task<UpdateOrderDto> UpdateOrderById (int id);
+        Task<OrdersDto> UpdateOrderById ( UpdateOrderDto updateOrderDto , int id);
 
         Task DeleteOrderById(int id);
 

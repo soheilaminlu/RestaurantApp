@@ -1,15 +1,17 @@
 ﻿
+using WaiterAPP.Dto.FoodDto;
+
 namespace WaiterAPP.Interfaces
 {
     public interface IFoodService
     {
         Task<FoodDto> GetAllFoods();
 
-        Task<CreateFoodDto> CreateFood();
+        Task<FoodDto> CreateFood(CreateFoodDto createFoodDto);
 
         Task<FoodDto> GetFoodByCategory(string categoryName);
 
-        Task<UpdateFoodDto> UpdateFoodById(int Id);
+        Task<FoodDto> UpdateFoodById(UpdateFoodDto updateFoodDto , int Id);
 
         Task DeleteFoodById(int Id);
 

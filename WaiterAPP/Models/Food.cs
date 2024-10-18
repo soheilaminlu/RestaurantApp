@@ -22,8 +22,8 @@ namespace WaiterAPP.Models
 
     public enum FoodCategory
     {
-        FastFood =1,
-        Kebab = 2,
-        SeaFood = 3
+        Appetizer = 1,
+        MainCourse =2,
+        Dessert = 3
     }
 }
