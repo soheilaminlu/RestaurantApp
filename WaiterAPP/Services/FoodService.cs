@@ -1,15 +1,32 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using WaiterAPP.DataBase;
 using WaiterAPP.Dto.FoodDto;
 using WaiterAPP.Interfaces;
 using WaiterAPP.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace WaiterAPP.Services
 {
     public class FoodService : IFoodService
     {
-        public Task<FoodDto> CreateFood(CreateFoodDto createFoodDto)
+        private readonly ILogger<FoodService> _logger;
+        private readonly AppDbContext _appDbContext;
+        public FoodService(ILogger<FoodService> logger , AppDbContext appDbContext)
         {
-            throw new NotImplementedException();
+            _logger = logger;
+            _appDbContext = appDbContext;
+        }
+        public async Task<FoodDto> CreateFood(CreateFoodDto createFoodDto)
+        {
+           var newFood = MapToFoodModelFromCreate(createFoodDto);
+            if (newFood == null)
+            {
+                return null;
+            }
+            await _appDbContext.Foods.AddAsync(newFood);
+            await _appDbContext.SaveChangesAsync();
+            var foodDto = MapToFoodDtoFromModel(newFood);
+            return foodDto;
         }
 
         public Task DeleteFoodById(int Id)
@@ -17,9 +34,14 @@ namespace WaiterAPP.Services
             throw new NotImplementedException();
         }
 
-        public Task<List<FoodDto>> GetAllFoods()
+        public async Task<List<FoodDto>> GetAllFoods()
         {
-            throw new NotImplementedException();
+            var foods = await _appDbContext.Foods.ToListAsync();
+            if (foods == null || foods.Any())
+            {
+                return new List<FoodDto>();
+            }
+            return foods.Select(o => MapToFoodDtoFromModel(o)).ToList();
         }
 
         public Task<FoodDto> GetFoodByCategory(string categoryName)
@@ -37,7 +59,7 @@ namespace WaiterAPP.Services
             throw new NotImplementedException();
         }
 
-        private Food MapToFoodDtoFromCreate(CreateFoodDto createFoodDto)
+        private Food MapToFoodModelFromCreate(CreateFoodDto createFoodDto)
         {
             return new Food
             {
